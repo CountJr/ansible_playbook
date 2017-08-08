@@ -1,0 +1,17 @@
+---
+- hosts: all
+
+  # pre_tasks:
+  #   - debug: 
+  #       msg: "locale incorrect"
+  #     when: ansible_env.LC_ALL != "en_US.UTF-8"
+
+  vars_files:
+    - "vars/settings.vars.yml"
+
+  roles:
+    # - { role: setlocale, when: ansible_env.LC_ALL != "en_US.UTF-8" }
+    # - users 
+    # - gitsetup
+    # - packages
+    # - dotfiles

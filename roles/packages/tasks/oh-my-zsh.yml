@@ -1,0 +1,25 @@
+---
+
+- name: oh-my-zsh - install packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - zsh
+
+- name: oh-my-zsh - install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
+- name: oh-my-zsh - copy config file
+  copy:
+    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest: ~/.zshrc
+    owner: root
+    group: root
+    mode: 0644
+    remote_src: yes
+
+- name: oh-my-zsh - change shell to zsh
+  shell: chsh -s /bin/zsh
+  

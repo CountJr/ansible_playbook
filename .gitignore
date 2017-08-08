@@ -1,0 +1,5 @@
+*.retry
+secret/
+vars/settings.vars.yml
+host_vars/
+production

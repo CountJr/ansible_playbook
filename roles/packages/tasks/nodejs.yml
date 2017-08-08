@@ -1,0 +1,22 @@
+---
+
+- name: nodejs - add apt keys
+  apt_key:
+    url: "{{ item }}"
+  with_items:
+    - https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    - https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: nodejs - add repos
+  apt_repository: 
+    repo: "{{ item }}"
+  with_items:
+    - deb https://deb.nodesource.com/node_8.x {{ ansible_distribution_release }} main
+    - deb https://dl.yarnpkg.com/debian/ stable main
+
+- name: nodejs - install packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - nodejs
+    - yarn

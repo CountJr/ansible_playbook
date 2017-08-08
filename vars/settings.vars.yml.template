@@ -1,0 +1,8 @@
+---
+
+user:
+  name: someUser
+
+git:
+  global_name: 'someUser'
+  global_email: 'someUser@example.com'

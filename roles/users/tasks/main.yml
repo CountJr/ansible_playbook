@@ -1,0 +1,24 @@
+---
+
+- name: make group
+  group:
+    name: super
+    state: present
+
+# - name: delete user count
+#   user:
+#     name: count
+#     state: absent
+#     remove: yes
+
+- name: create user
+  user:
+    name: count
+    groups: super
+    shell: /bin/bash
+
+- name: set authorized key
+  authorized_key:
+    user: count
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

@@ -1,0 +1,8 @@
+---
+
+
+- name: get dot files from github
+  git:
+    repo: git@github.com:CountJr/dot-files.git
+    dest: ~/.dot-files
+
