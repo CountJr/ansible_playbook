@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: no
 
   # pre_tasks:
   #   - debug: 
@@ -14,4 +15,4 @@
     # - users 
     # - gitsetup
     # - packages
-    # - dotfiles
+    - dotfiles
