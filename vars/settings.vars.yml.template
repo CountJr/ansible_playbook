@@ -6,3 +6,4 @@ user:
 git:
   global_name: 'someUser'
   global_email: 'someUser@example.com'
+  dotfiles_repo: 'git@github.com:some_dotfiles_repo_url.git'

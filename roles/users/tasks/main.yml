@@ -5,20 +5,20 @@
     name: super
     state: present
 
-# - name: delete user count
+# - name: delete user {{ name }}
 #   user:
 #     name: count
 #     state: absent
 #     remove: yes
 
-- name: create user
+- name: "create user {{ user.name }}"
   user:
-    name: count
+    name: "{{ user.name }}"
     groups: super
     shell: /bin/bash
 
 - name: set authorized key
   authorized_key:
-    user: count
+    user: "{{ user.name }}"
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

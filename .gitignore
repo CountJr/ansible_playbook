@@ -3,3 +3,5 @@ secret/
 vars/settings.vars.yml
 host_vars/
 production
+Vagrantfile
+develop

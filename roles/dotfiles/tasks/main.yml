@@ -1,17 +1,17 @@
 ---
 
-
 - name: get dot files from github
   git:
-    repo: git@github.com:CountJr/dot-files.git
-    dest: ~/.dot-files
+    repo: "{{ git.dotfiles_repo }}"
+    dest: ~/dotfiles
+    accept_hostkey: true
 
 - name: copy dot files
   block:
-    - shell: ls ~/.dot-files/files/
+    - shell: ls ~/dotfiles/files/
       register: path_files
-    - copy:
-        src: "~/.dot-files/files/{{ item }}"
+    - file:
+        src: "~/dotfiles/files/{{ item }}"
         dest: "~/.{{ item }}"
-        remote_src: yes
+        state: link
       with_items: "{{ path_files.stdout_lines }}"

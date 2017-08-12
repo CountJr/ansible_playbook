@@ -4,3 +4,5 @@ ping:
 play:
 	ansible-playbook main.yml
 
+playlocal:
+	ansible-playbook main.yml -i develop
