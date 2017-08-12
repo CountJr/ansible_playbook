@@ -14,4 +14,5 @@
         src: "~/dotfiles/files/{{ item }}"
         dest: "~/.{{ item }}"
         state: link
+        force: yes
       with_items: "{{ path_files.stdout_lines }}"

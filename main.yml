@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  gather_facts: no
+  # gather_facts: no
 
   # pre_tasks:
   #   - debug: 
@@ -12,7 +12,7 @@
 
   roles:
     # - { role: setlocale, when: ansible_env.LC_ALL != "en_US.UTF-8" }
-    - users 
-    - gitsetup
-    # - packages
-    - dotfiles
+    # - users 
+    # - gitsetup
+    - packages
+    # - dotfiles
