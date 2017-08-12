@@ -15,4 +15,4 @@
     # - users 
     # - gitsetup
     - packages
-    # - dotfiles
+    - dotfiles

@@ -3,16 +3,16 @@
 - name: get dot files from github
   git:
     repo: "{{ git.dotfiles_repo }}"
-    dest: ~/dotfiles
+    dest: "/home/{{ user.name }}/dotfiles"
     accept_hostkey: true
 
 - name: copy dot files
   block:
-    - shell: ls ~/dotfiles/files/
+    - shell: "ls /home/{{ user.name }}/dotfiles/files/"
       register: path_files
     - file:
-        src: "~/dotfiles/files/{{ item }}"
-        dest: "~/.{{ item }}"
+        src: "/home/{{ user.name }}/dotfiles/files/{{ item }}"
+        dest: "/home/{{ user.name }}/.{{ item }}"
         state: link
         force: yes
       with_items: "{{ path_files.stdout_lines }}"

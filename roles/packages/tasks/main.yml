@@ -1,4 +1,4 @@
 ---
 
-# - include: nodejs.yml
+- include: nodejs.yml
 - include: oh-my-zsh.yml
