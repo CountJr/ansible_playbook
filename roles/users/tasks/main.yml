@@ -16,6 +16,7 @@
     name: "{{ user.name }}"
     groups: super
     shell: /bin/bash
+  register: user
 
 - name: set authorized key
   authorized_key:

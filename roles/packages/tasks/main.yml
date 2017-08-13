@@ -2,3 +2,11 @@
 
 - include: nodejs.yml
 - include: oh-my-zsh.yml
+
+- name: install packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - tree
+    - tmux
+    

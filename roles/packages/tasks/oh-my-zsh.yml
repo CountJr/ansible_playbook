@@ -2,19 +2,18 @@
 
 - name: oh-my-zsh - install packages
   apt:
-    name: "{{ item }}"
-  with_items:
-    - zsh
+    name: zsh
 
 - name: oh-my-zsh - install oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: "/home/{{ user.name }}/.oh-my-zsh"
+    dest: "{{ user.home }}/.oh-my-zsh"
+    force: yes
 
 - name: oh-my-zsh - copy config file
   copy:
-    src: "/home/{{ user.name }}/.oh-my-zsh/templates/zshrc.zsh-template"
-    dest: "/home/{{ user.name }}/.zshrc"
+    src: "{{ user.home }}/.oh-my-zsh/templates/zshrc.zsh-template"
+    dest: "{{ user.home }}/.zshrc"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0644

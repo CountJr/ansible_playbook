@@ -15,7 +15,7 @@
 - name: copy github key
   copy:
     src: ./secret/github
-    dest: ~/.ssh/id_rsa
-    owner: root
-    group: root
+    dest: "{{ user.home }}/.ssh/id_rsa"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
     mode: 0600

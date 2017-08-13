@@ -3,16 +3,29 @@
 - name: get dot files from github
   git:
     repo: "{{ git.dotfiles_repo }}"
-    dest: "/home/{{ user.name }}/dotfiles"
+    dest: "{{ user.home }}/dotfiles"
     accept_hostkey: true
 
 - name: copy dot files
   block:
-    - shell: "ls /home/{{ user.name }}/dotfiles/files/"
+    - shell: "ls {{ user.home }}/dotfiles/files/"
       register: path_files
     - file:
-        src: "/home/{{ user.name }}/dotfiles/files/{{ item }}"
-        dest: "/home/{{ user.name }}/.{{ item }}"
+        src: "{{ user.home }}/dotfiles/files/{{ item }}"
+        dest: "{{ user.home }}/.{{ item }}"
         state: link
         force: yes
       with_items: "{{ path_files.stdout_lines }}"
+
+- name: delete oh-my-zsh custom
+  file:
+    dest: "{{ user.home }}/.oh-my-zsh/custom"
+    state: absent
+
+- name: link oh-my-zsh customs
+  file:
+    src: "{{ user.home }}/dotfiles/oh-my-zsh/custom"
+    dest: "{{ user.home }}/.oh-my-zsh/custom"
+    state: link
+    force: yes
+  
