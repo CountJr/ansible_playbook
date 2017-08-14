@@ -20,3 +20,21 @@
   tags:
     - all
     - docker
+
+- name: make docker group
+  group:
+    name: docker
+    state: present
+  tags:
+    - all
+    - docker
+
+- name: "add {{ user.name }} in docker group"
+  user:
+    name: "{{ user.name }}"
+    groups: docker
+    append: yes
+  tags:
+    - all
+    - docker
+    

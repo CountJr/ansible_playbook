@@ -2,6 +2,7 @@
 
 user:
   name: someUser
+  password: somePasswordHash
 
 git:
   global_name: 'someUser'

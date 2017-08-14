@@ -20,7 +20,8 @@
 - name: "create user {{ user.name }}"
   user:
     name: "{{ user.name }}"
-    # groups: super
+    groups: sudo
+    password: "{{ user.password }}"
     shell: /bin/bash
   register: user
   tags:
