@@ -6,3 +6,6 @@ play:
 
 playlocal:
 	ansible-playbook main.yml -i develop
+
+test:
+	ansible-playbook main.yml -i develop --tags $(tags)

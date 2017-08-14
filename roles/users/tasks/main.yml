@@ -1,9 +1,9 @@
 ---
 
-- name: make group
-  group:
-    name: super
-    state: present
+# - name: make group
+#   group:
+#     name: super
+#     state: present
 
 # - name: delete user {{ name }}
 #   user:
@@ -14,7 +14,7 @@
 - name: "create user {{ user.name }}"
   user:
     name: "{{ user.name }}"
-    groups: super
+    # groups: super
     shell: /bin/bash
   register: user
 
