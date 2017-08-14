@@ -11,6 +11,9 @@
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: "{{ user.home }}/.oh-my-zsh"
     force: yes
+    key_file: "{{ user.home }}/.ssh/id_rsa"
+  become: true
+  become_user: "{{ user.name }}"
   tags:
     - ohmyzsh
 
