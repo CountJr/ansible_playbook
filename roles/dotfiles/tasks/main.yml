@@ -5,6 +5,9 @@
     repo: "{{ git.dotfiles_repo }}"
     dest: "{{ user.home }}/dotfiles"
     accept_hostkey: true
+  tags:
+    - all
+    - dotfiles
 
 - name: copy dot files
   block:
@@ -18,11 +21,16 @@
       with_items: "{{ path_files.stdout_lines }}"
   tags:
     - all
-
+    - dotfiles
+    
 - name: delete oh-my-zsh custom
   file:
     dest: "{{ user.home }}/.oh-my-zsh/custom"
     state: absent
+  tags:
+    - all
+    - dotfiles
+    
 
 - name: link oh-my-zsh customs
   file:
@@ -30,4 +38,7 @@
     dest: "{{ user.home }}/.oh-my-zsh/custom"
     state: link
     force: yes
-  
+  tags:
+    - all
+    - dotfiles
+     

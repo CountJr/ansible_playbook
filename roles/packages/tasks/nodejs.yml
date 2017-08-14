@@ -6,6 +6,9 @@
   with_items:
     - https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     - https://dl.yarnpkg.com/debian/pubkey.gpg
+  tags:
+    - all
+    - nodejs
 
 - name: nodejs - add repos
   apt_repository: 
@@ -13,6 +16,9 @@
   with_items:
     - deb https://deb.nodesource.com/node_8.x {{ ansible_distribution_release }} main
     - deb https://dl.yarnpkg.com/debian/ stable main
+  tags:
+    - all
+    - nodejs
 
 - name: nodejs - install packages
   apt:
@@ -20,3 +26,6 @@
   with_items:
     - nodejs
     - yarn
+  tags:
+    - all
+    - nodejs

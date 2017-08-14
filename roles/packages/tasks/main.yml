@@ -1,13 +1,16 @@
 ---
 
-# - include: nodejs.yml
-# - include: oh-my-zsh.yml
+- include: nodejs.yml
+- include: oh-my-zsh.yml
 - include: docker.yml
 
-# - name: install packages
-#   apt:
-#     name: "{{ item }}"
-#   with_items:
-#     - tree
-#     - tmux
+- name: install packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - tree
+    - tmux
+  tags:
+    - all
+    - packages
     
