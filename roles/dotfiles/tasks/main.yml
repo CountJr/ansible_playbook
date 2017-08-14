@@ -6,7 +6,6 @@
     dest: "{{ user.home }}/dotfiles"
     accept_hostkey: true
   tags:
-    - all
     - dotfiles
 
 - name: copy dot files
@@ -20,7 +19,6 @@
         force: yes
       with_items: "{{ path_files.stdout_lines }}"
   tags:
-    - all
     - dotfiles
     
 - name: delete oh-my-zsh custom
@@ -28,7 +26,6 @@
     dest: "{{ user.home }}/.oh-my-zsh/custom"
     state: absent
   tags:
-    - all
     - dotfiles
     
 
@@ -39,6 +36,5 @@
     state: link
     force: yes
   tags:
-    - all
     - dotfiles
      

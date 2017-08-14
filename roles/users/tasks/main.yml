@@ -5,7 +5,6 @@
 #     name: super
 #     state: present
 # tags:
-#   - all
 #   - users
 
 # - name: delete user {{ name }}
@@ -14,7 +13,6 @@
 #     state: absent
 #     remove: yes
 # tags:
-#   - all
 #   - users
 
 - name: "create user {{ user.name }}"
@@ -25,7 +23,6 @@
     shell: /bin/bash
   register: user
   tags:
-    - all
     - users
 
 - name: set authorized key
@@ -34,6 +31,5 @@
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
   tags:
-    - all
     - users
 

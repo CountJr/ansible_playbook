@@ -4,21 +4,18 @@
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
   tags:
-    - all
     - docker
 
 - name: docker - add repos
   apt_repository: 
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
   tags:
-    - all
     - docker
 
 - name: docker - install packages
   apt:
     name: docker-ce
   tags:
-    - all
     - docker
 
 - name: make docker group
@@ -26,7 +23,6 @@
     name: docker
     state: present
   tags:
-    - all
     - docker
 
 - name: "add {{ user.name }} in docker group"
@@ -35,6 +31,4 @@
     groups: docker
     append: yes
   tags:
-    - all
     - docker
-    

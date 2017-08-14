@@ -6,7 +6,6 @@
     scope: global
     value: "{{ git.global_name }}"
   tags:
-    - all
     - gitsetup
 
 - name: set global email
@@ -15,7 +14,6 @@
     scope: global
     value: "{{ git.global_email }}"
   tags:
-    - all
     - gitsetup
 
 - name: copy github key
@@ -26,5 +24,4 @@
     group: "{{ user.name }}"
     mode: 0600
   tags:
-    - all
     - gitsetup

@@ -4,7 +4,6 @@
   apt:
     name: zsh
   tags:
-    - all
     - ohmyzsh
 
 - name: oh-my-zsh - install oh-my-zsh
@@ -13,7 +12,6 @@
     dest: "{{ user.home }}/.oh-my-zsh"
     force: yes
   tags:
-    - all
     - ohmyzsh
 
 - name: oh-my-zsh - copy config file
@@ -25,11 +23,9 @@
     mode: 0644
     remote_src: yes
   tags:
-    - all
     - ohmyzsh
 
 - name: oh-my-zsh - change shell to zsh
   shell: "chsh -s /bin/zsh {{ user.name }}"
   tags:
-    - all
     - ohmyzsh
