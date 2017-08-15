@@ -4,9 +4,22 @@
   apt:
     name: "{{ item }}"
   with_items:
+    - git-core
+    - curl
+    - zlib1g-dev
+    - build-essential
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    - libxml2-dev
+    - libxslt1-dev
+    - libcurl4-openssl-dev
+    - python-software-properties
+    - libffi-dev
     - ruby
     - ruby-dev
-  register: ruby_obj
   tags:
     - rails
 
@@ -14,16 +27,15 @@
   shell: ruby -e 'print Gem.user_dir'
   become: true
   become_user: "{{ user.name }}"
-  register: path_obj
+  register: gem_bin_path
   tags:
     - rails
-    - test
 
 - name: install gems
   gem:
     name: "{{ item }}"
     state: latest
-  ignore_errors: yes
+  # ignore_errors: yes
   register: gems_obj
   with_items:
     - rails
@@ -32,6 +44,10 @@
   become: true
   become_user: "{{ user.name }}"
   environment:
-    PATH: "{{ path_obj.stdout}}/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ gem_bin_path.stdout}}/bin:{{ ansible_env.PATH }}"
   tags:
     - rails
+
+# - name: debug
+#   debug:
+#     msg: "{{ gems_obj }}"

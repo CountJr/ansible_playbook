@@ -1,11 +1,32 @@
 ---
 
+- name: install mono
+  shell: |
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-official.list
+
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - cmake
+    - build-essential
+    - python-dev
+    - python3-dev
+    - mono-runtime
+    - mono-xbuild
+    - golang
+    - cargo
+  tags:
+    - dotfiles
+
 - name: get dot files from github
   git:
     repo: "{{ git.dotfiles_repo }}"
     dest: "{{ user.home }}/dotfiles"
     accept_hostkey: true
     key_file: "{{ user.home }}/.ssh/id_rsa"
+    force: yes
   become: true
   become_user: "{{ user.name }}"
   tags:
@@ -42,4 +63,55 @@
     force: yes
   tags:
     - dotfiles
-     
+
+- name: create dir for vim-plug
+  file:
+    path: ~/.vim/autoload/
+    state: directory
+    recurse: yes
+  become: true
+  become_user: "{{ user.name }}"
+  tags:
+    - dotfiles
+
+- name: download vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
+  become: true
+  become_user: "{{ user.name }}"
+  tags:
+    - dotfiles
+
+- name: install vim plugins
+  shell: |
+    vim -E -s -c "source ~/.vimrc" +PlugInstall +qall -V
+  become: true
+  become_user: "{{ user.name }}"
+  ignore_errors: yes
+  register: test_obj
+  tags:
+    - dotfiles
+
+- name: debug
+  debug:
+    msg: "{{ test_obj.start }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
+  tags:
+    - dotfiles
+
+- name: initialize YouCompleteMe
+  shell: |
+    cd ~/.vim/plugged/YouCompleteMe
+    git submodule update --init --recursive
+    ./install.py --all
+  become: true
+  become_user: "{{ user.name }}"
+  register: test_obj
+  tags:
+    - dotfiles
+
+- name: debug
+  debug:
+    msg: "{{ test_obj.start }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
+  tags:
+    - dotfiles

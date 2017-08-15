@@ -4,6 +4,7 @@
 - include: oh-my-zsh.yml
 - include: docker.yml
 - include: rails.yml
+- include: php.yml
 
 - name: install packages
   apt:
@@ -11,6 +12,7 @@
   with_items:
     - tree
     - tmux
+    - vim
   tags:
     - packages
     
