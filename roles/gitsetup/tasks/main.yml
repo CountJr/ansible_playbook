@@ -7,6 +7,7 @@
     value: "{{ git.global_name }}"
   tags:
     - gitsetup
+    - dotfiles
 
 - name: set global email
   git_config:
@@ -15,6 +16,7 @@
     value: "{{ git.global_email }}"
   tags:
     - gitsetup
+    - dotfiles
 
 - name: copy github key
   copy:
@@ -25,3 +27,4 @@
     mode: 0600
   tags:
     - gitsetup
+    - dotfiles

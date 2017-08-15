@@ -1,0 +1,37 @@
+---
+
+- name: install ruby
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - ruby
+    - ruby-dev
+  register: ruby_obj
+  tags:
+    - rails
+
+- name: add gem bin folder to path
+  shell: ruby -e 'print Gem.user_dir'
+  become: true
+  become_user: "{{ user.name }}"
+  register: path_obj
+  tags:
+    - rails
+    - test
+
+- name: install gems
+  gem:
+    name: "{{ item }}"
+    state: latest
+  ignore_errors: yes
+  register: gems_obj
+  with_items:
+    - rails
+    - rake
+    - rubocop
+  become: true
+  become_user: "{{ user.name }}"
+  environment:
+    PATH: "{{ path_obj.stdout}}/bin:{{ ansible_env.PATH }}"
+  tags:
+    - rails

@@ -3,6 +3,7 @@
 - include: nodejs.yml
 - include: oh-my-zsh.yml
 - include: docker.yml
+- include: rails.yml
 
 - name: install packages
   apt:
