@@ -1,14 +1,21 @@
 ---
 
-- name: install mono
-  shell: |
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-official.list
+- name: install mono - repo
+  apt_repository: 
+    repo: deb http://download.mono-project.com/repo/ubuntu xenial main
+  tags:
+    - dotfiles
+    
+# - name: install mono
+#   shell: |
+#     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+#     echo "deb http://download.mono-project.com/repo/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/mono-official.list
 
 - name: install dependencies
   apt:
     name: "{{ item }}"
   with_items:
+    - mono-devel
     - cmake
     - build-essential
     - python-dev
@@ -88,16 +95,16 @@
     vim -E -s -c "source ~/.vimrc" +PlugInstall +qall -V
   become: true
   become_user: "{{ user.name }}"
-  ignore_errors: yes
-  register: test_obj
+  # ignore_errors: yes
+  # register: test_obj
   tags:
     - dotfiles
 
-- name: debug
-  debug:
-    msg: "{{ test_obj.start }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
-  tags:
-    - dotfiles
+# - name: debug
+#   debug:
+#     msg: "{{ test_obj.start }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
+#   tags:
+#     - dotfiles
 
 - name: initialize YouCompleteMe
   shell: |
@@ -106,12 +113,13 @@
     ./install.py --all
   become: true
   become_user: "{{ user.name }}"
-  register: test_obj
+  # ignore_errors: yes
+  # register: test_obj
   tags:
     - dotfiles
 
-- name: debug
-  debug:
-    msg: "{{ test_obj.start }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
-  tags:
-    - dotfiles
+# - name: debug
+#   debug:
+#     msg: "{{ test_obj }}\n{{ test_obj.end }}\n{{ test_obj.delta }}"
+#   tags:
+#     - dotfiles
