@@ -14,6 +14,7 @@
 - name: install dependencies
   apt:
     name: "{{ item }}"
+    allow_unauthenticated: yes
   with_items:
     - mono-devel
     - cmake

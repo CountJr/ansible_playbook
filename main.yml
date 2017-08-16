@@ -10,6 +10,7 @@
   vars_files:
     - "vars/settings.vars.yml"
 
+
   roles:
     - { role: setlocale, when: ansible_env.LC_ALL != "en_US.UTF-8" }
     - users 
