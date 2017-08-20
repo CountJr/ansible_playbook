@@ -1,10 +1,10 @@
 ---
 
 - include: nodejs.yml
-- include: oh-my-zsh.yml
 - include: docker.yml
 - include: rails.yml
 - include: php.yml
+- include: nginx.yml
 
 - name: install packages
   apt:

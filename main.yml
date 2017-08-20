@@ -12,9 +12,15 @@
 
 
   roles:
-    - { role: setlocale, when: ansible_env.LC_ALL != "en_US.UTF-8" }
-    - users 
-    - gitsetup
-    - packages
-    - dotfiles
-    
+    - role: setlocale
+      when: ansible_env.LC_ALL != "en_US.UTF-8"
+      tags:
+        - setlocale
+
+    - role: users
+      tags:
+        - users
+    # - gitsetup
+    # - packages
+    # - dotfiles
+    # - nginx

@@ -107,17 +107,17 @@
 #   tags:
 #     - dotfiles
 
-- name: initialize YouCompleteMe
-  shell: |
-    cd ~/.vim/plugged/YouCompleteMe
-    git submodule update --init --recursive
-    ./install.py --all
-  become: true
-  become_user: "{{ user.name }}"
-  # ignore_errors: yes
-  # register: test_obj
-  tags:
-    - dotfiles
+# - name: initialize YouCompleteMe
+#   shell: |
+#     cd ~/.vim/plugged/YouCompleteMe
+#     git submodule update --init --recursive
+#     ./install.py --all
+#   become: true
+#   become_user: "{{ user.name }}"
+#   ignore_errors: yes
+#   register: test_obj
+#   tags:
+#     - dotfiles
 
 # - name: debug
 #   debug:
