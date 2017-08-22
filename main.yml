@@ -17,10 +17,23 @@
       tags:
         - setlocale
 
+    - role: common
+      tags:
+        - common
+
     - role: users
       tags:
         - users
-    # - gitsetup
-    # - packages
-    # - dotfiles
-    # - nginx
+
+    - role: nginx
+      tags:
+        - nginx
+
+    - role: nodejs
+      tags:
+        - nodejs
+        - rails
+    
+    - role: php
+      tags:
+        - php

@@ -1,5 +1,6 @@
 ---
 
 - include: create_user.yml
+- include: gitsetup.yml
 - include: oh-my-zsh.yml
 - include: dotfiles.yml

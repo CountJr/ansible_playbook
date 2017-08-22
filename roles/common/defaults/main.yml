@@ -1,0 +1,4 @@
+---
+
+# system upgrade method. use one from [no, yes, safe, full, dist]. 
+common_upgrade_method: "safe"

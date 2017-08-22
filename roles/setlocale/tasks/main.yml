@@ -1,14 +1,5 @@
 ---
 
-- name: "FIX: Ubuntu 16.04 LTS doesn't come with certain modules, required by ansible"
-  raw: apt-get install python-minimal aptitude -y
-
-- name: upgrade
-  apt:
-    upgrade: yes
-    update_cache: yes
-    cache_valid_time: 86400
-
 - name: generate locale
   locale_gen:
     name: en_US.UTF-8

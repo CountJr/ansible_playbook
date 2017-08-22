@@ -3,19 +3,16 @@
 - name: add repository
   apt_repository: 
     repo: ppa:ondrej/php
-  tags:
-    - php
 
 - name: install php
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
-    - php
+    - php-fpm
     - php-cli
     - php-intl
-  tags:
-    - php
+    - php-zip
 
 - name: install composer
   shell: |
@@ -25,15 +22,12 @@
     php composer-setup.php
     php -r "unlink('composer-setup.php');"
     mv /tmp/composer.phar /usr/local/bin/composer
-  tags:
-    - php
 
 - name: install composer addons
   shell: "composer global require {{ item }}"
   with_items:
     - "squizlabs/php_codesniffer=*"
     - "mkusher/padawan=*"
+  ignore_errors: yes
   become: true
   become_user: "{{ user.name }}"
-  tags:
-    - php

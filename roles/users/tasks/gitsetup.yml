@@ -4,19 +4,13 @@
   git_config:
     name: user.name
     scope: global
-    value: "{{ git.global_name }}"
-  tags:
-    - gitsetup
-    - dotfiles
+    value: "{{ users_git_global_name }}"
 
 - name: set global email
   git_config:
     name: user.email
     scope: global
-    value: "{{ git.global_email }}"
-  tags:
-    - gitsetup
-    - dotfiles
+    value: "{{ users_git_global_email }}"
 
 - name: copy github key
   copy:
@@ -25,6 +19,3 @@
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0600
-  tags:
-    - gitsetup
-    - dotfiles

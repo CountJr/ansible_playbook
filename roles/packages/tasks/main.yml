@@ -1,18 +1,18 @@
 ---
 
-- include: nodejs.yml
-- include: docker.yml
-- include: rails.yml
-- include: php.yml
-- include: nginx.yml
+# - include: nodejs.yml
+# - include: docker.yml
+# - include: rails.yml
+# - include: php.yml
+# - include: nginx.yml
 
-- name: install packages
-  apt:
-    name: "{{ item }}"
-  with_items:
-    - tree
-    - tmux
-    - vim
-  tags:
-    - packages
+# - name: install packages
+#   apt:
+#     name: "{{ item }}"
+#   with_items:
+#     - tree
+#     - tmux
+#     - vim
+#   tags:
+#     - packages
     

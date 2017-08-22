@@ -3,21 +3,15 @@
 - name: oh-my-zsh - install packages
   apt:
     name: zsh
-  tags:
-    - ohmyzsh
-    - dotfiles
 
 - name: oh-my-zsh - install oh-my-zsh
   git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    repo: "{{ users_ohmyzsh_repository }}"
     dest: "{{ user.home }}/.oh-my-zsh"
     force: yes
     key_file: "{{ user.home }}/.ssh/id_rsa"
   become: true
   become_user: "{{ user.name }}"
-  tags:
-    - ohmyzsh
-    - dotfiles
 
 # - name: oh-my-zsh - copy config file
 #   copy:
@@ -27,12 +21,4 @@
 #     group: "{{ user.name }}"
 #     mode: 0644
 #     remote_src: yes
-#   tags:
-#     - ohmyzsh
-#     - dotfiles
 
-# - name: oh-my-zsh - change shell to zsh
-#   shell: "chsh -s /bin/zsh {{ user.name }}"
-#   tags:
-#     - ohmyzsh
-#     - dotfiles

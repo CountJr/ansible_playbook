@@ -1,7 +1,13 @@
 ---
 
+common_aptitude_fix_packages:
+    - python-minimal
+    - aptitude
+    
 common_packages_list:
     - tree
-    - openssh
+    # - openssl
     - curl
-    
+    - whois
+    - zip
+    - unzip
