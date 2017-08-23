@@ -28,6 +28,7 @@
     - role: nginx
       tags:
         - nginx
+        - php
 
     - role: nodejs
       tags:
@@ -36,4 +37,9 @@
     
     - role: php
       tags:
+        - php
+    
+    - role: mysql
+      tags:
+        - mysql
         - php

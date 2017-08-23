@@ -9,10 +9,11 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - php-fpm
-    - php-cli
-    - php-intl
-    - php-zip
+    - php7.1-fpm
+    - php7.1-cli
+    - php7.1-intl
+    - php7.1-zip
+    - php7.1-mysql
 
 - name: install composer
   shell: |
