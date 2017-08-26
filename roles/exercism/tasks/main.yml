@@ -1,0 +1,29 @@
+---
+
+# - name: exercism
+#   apt: 
+#     name: golang
+
+- name: get latest version info
+  uri:
+    url: https://github.com/exercism/cli/releases/latest
+    method: HEAD
+  register: exercism_info
+
+- name: get archive
+  get_url:
+    url: "https://github.com/exercism/cli/releases/download/{{ exercism_info.url | regex_replace('^http.*/([0-9v.]*)$', '\\1') }}/exercism-linux-64bit.tgz"
+    dest: /tmp/
+
+- name: unzip in temporary folder
+  unarchive:
+    src: /tmp/exercism-linux-64bit.tgz
+    dest: /tmp/
+    remote_src: True
+
+- name: install exercism
+  copy:
+    src: /tmp/exercism
+    dest: /usr/local/bin/exercism
+    mode: "u+rx,g+rx,o+rx"
+    remote_src: true

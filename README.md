@@ -15,7 +15,7 @@ Edit and rename files:
 - host_vars.template
 - secret.template
 
-## Provisining
+## Provisoning
 
 Run for...
 

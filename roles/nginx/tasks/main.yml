@@ -96,10 +96,10 @@
     state: started
     enabled: yes
 
-# - name: TEMP! copy test index in html folder
-#   copy:
-#     src: "{{ role_path }}/files/index.php"
-#     dest: /var/www/html/index.php
+- name: TEMP! copy test index in html folder
+  copy:
+    src: "{{ role_path }}/files/index.php"
+    dest: /www/index.php
 
 # - name: restart nginx
 #   service: 

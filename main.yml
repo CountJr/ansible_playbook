@@ -43,3 +43,7 @@
       tags:
         - mysql
         - php
+
+    - role: exercism
+      tags:
+        - exercism
