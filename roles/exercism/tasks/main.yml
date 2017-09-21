@@ -1,8 +1,15 @@
 ---
 
-# - name: exercism
-#   apt: 
-#     name: golang
+- name: exercism
+  apt: 
+    name: "{{ item }}"
+  with_items:
+    - golang
+
+- name: install jasmine
+  npm:
+    name: jasmine
+    global: yes
 
 - name: get latest version info
   uri:

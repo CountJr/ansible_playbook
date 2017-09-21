@@ -5,3 +5,5 @@ host_vars/
 production
 Vagrantfile
 develop
+requirements.yml
+test.yml

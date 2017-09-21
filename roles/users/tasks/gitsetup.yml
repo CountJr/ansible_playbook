@@ -5,12 +5,16 @@
     name: user.name
     scope: global
     value: "{{ users_git_global_name }}"
+  become: true
+  become_user: "{{ user.name }}"
 
 - name: set global email
   git_config:
     name: user.email
     scope: global
     value: "{{ users_git_global_email }}"
+  become: true
+  become_user: "{{ user.name }}"
 
 - name: copy github key
   copy:

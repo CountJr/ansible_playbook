@@ -97,9 +97,17 @@
     enabled: yes
 
 - name: TEMP! copy test index in html folder
-  copy:
-    src: "{{ role_path }}/files/index.php"
-    dest: /www/index.php
+  block:
+    - file:
+        path: "/www"
+        state: directory
+        owner: "{{ user.name }}"
+        group: "{{ user.name }}"
+        mode: 0755
+
+    - copy:
+        src: "{{ role_path }}/files/index.php"
+        dest: /www/index.php
 
 # - name: restart nginx
 #   service: 
